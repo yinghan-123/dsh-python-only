@@ -1,5 +1,7 @@
 # dsh-python-only
 
+> GitHub：https://github.com/yinghan-123/dsh-python-only · 一行安装：`pnpm add github.com/yinghan-123/dsh-python-only`
+
 强制 DeepSeek Harness（DSH）的 Agent **一切代码执行与数据处理都使用 `python` 工具**，并用工具守卫**拦截 shell 类工具**。为 DSHM 端侧（HarmonyOS 手机 / 平板 / PC）设计：端侧 `python` 工具跑在宿主进程内的内嵌 CPython 3.12（不 execve、不依赖 guest VM），而 `bash` 走 guest 虚拟机、guest 里没有 python3。
 
 ## 它做什么
@@ -42,7 +44,13 @@
 
 ## 安装（DSHM 端侧）
 
-三个位置都要就位：
+**一行安装** —— DSHM 端侧 PATH 里的 `pnpm` 是 Host 布置的假壳，`add` 会被改写成安装队列、由进程内安装器（`dshm-installer.js`）完成并同步返回结果：
+
+```bash
+pnpm add github.com/yinghan-123/dsh-python-only
+```
+
+装完 **重启 DSHM** 一次才会挂载（profile 的 `patchReload` 是 `startup`）。需要手动部署、或要精确控制文件落位时，用下面的方式 —— 三个位置都要就位：
 
 1. **包**：把本目录整体复制到 profile 的 `node_modules`：
 
