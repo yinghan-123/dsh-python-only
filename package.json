@@ -4,6 +4,14 @@
   "description": "DSH 插件：强制 Agent 一切代码执行与数据处理使用 python 工具，并用工具守卫拦截 bash（无例外），让 DSHM 端侧稳定走进程内 CPython。",
   "type": "module",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yinghan-123/dsh-python-only.git"
+  },
+  "homepage": "https://github.com/yinghan-123/dsh-python-only#readme",
+  "bugs": {
+    "url": "https://github.com/yinghan-123/dsh-python-only/issues"
+  },
   "main": "lib/index.js",
   "exports": {
     ".": "./lib/index.js",
