@@ -2,7 +2,19 @@
 #
 # 只插入本插件自身，不改写任何官方装载行。
 # 生效条件：本包出现在 profile 的 `dsh.profile.bundles` 里（或用户行区手工插入
-# 同内容的 `- id: python-only` / `name: dsh-python-only`）。
+# 同内容的行）。
+#
+# 两行，各司其职：
+#   · python-only         —— 主插件：提示词 + 工具守卫（会拦截 bash 等）；
+#   · python-only-notice  —— 常驻状态通知行：只读进程内状态，在主插件被「插件守卫」
+#                            停用后代它告诉模型「约束已解除」。它永不拦截、零外部依赖，
+#                            缺了主插件也能独立加载（见 lib/notice.js 头注）。
+#
+# 注意：第二行的 name 是包内子路径（`exports["./notice"]`），不是包名 —— 这样
+# dsh-client-modules 不会把同一个包的客户端 bundle 当成两个来源（只有"裸包名"才参与
+# 客户端扫描），插件守卫的用户插件列表也只会列出主行。
 - insert:
     - id: python-only
       name: dsh-python-only
+    - id: python-only-notice
+      name: dsh-python-only/notice

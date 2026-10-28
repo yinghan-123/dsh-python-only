@@ -1,7 +1,7 @@
 {
   "name": "dsh-python-only",
-  "version": "1.0.0",
-  "description": "DSH 插件：强制 Agent 一切代码执行与数据处理使用 python 工具，并用工具守卫拦截 bash（无例外），让 DSHM 端侧稳定走进程内 CPython。",
+  "version": "1.1.0",
+  "description": "DSH 插件：强制 Agent 一切代码执行与数据处理使用 python 工具，并用工具守卫拦截 bash（无例外）；关闭开关 / 清空拦截列表 / 在插件守卫里停用插件时，每步告知模型约束已解除。",
   "type": "module",
   "license": "MIT",
   "repository": {
@@ -16,6 +16,7 @@
   "exports": {
     ".": "./lib/index.js",
     "./client": "./lib/client.js",
+    "./notice": "./lib/notice.js",
     "./cordis.patch.yml": "./cordis.patch.yml",
     "./package.json": "./package.json"
   },
